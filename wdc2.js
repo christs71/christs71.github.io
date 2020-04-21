@@ -3,7 +3,7 @@
 // jQuery request
 (function() {
 	var settings = {
-     "url": "https://api-ssl.bitly.com/v4/groups/Bh7lfaC9nWX/bitlinks",
+     "url": "https://api-ssl.bitly.com/v4/bitlinks/bit.ly/3bgVO8w/clicks",
      "method": "GET",
     "timeout": 0,
     "headers": {
