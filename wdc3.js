@@ -52,6 +52,7 @@
       var settings = {
         "url": "https://api-ssl.bitly.com/v4/groups/Bh7lfaC9nWX/bitlinks",
         "method": "GET",
+        "mode" : "cors",
         "timeout": 0,
         "headers": {
           "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
