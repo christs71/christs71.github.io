@@ -1,77 +1,100 @@
 
 "use strict";
+
+
 (function() {
     var myConnector = tableau.makeConnector();
-  myConnector.getColumnHeaders = function() {
-      var fieldNames1 = ['createdAt','id','link','longURL', 'title', 'archived','tag1','tag2','tag3','tag4'];
-      var fieldTypes1 = ['datetime','string','string','string','string','boolean','string','string','string','string'];
-      tableau.headersCallback(fieldNames, fieldTypes);
-  }
-    myConnector.getTableData = function(lastRecordToken) {
-      var dataToReturn = [];
-      var bitlinkID = new Object();
-      var hasMoreData = false;
-      
-      // Get parameter values and build  query
-      
+
+        // Define the schema
+        myConnector.getSchema = function(schemaCallback) {
+            var cols = [{
+                createdAt: "createdAt",
+                dataType: tableau.dataTypeEnum.datetime
+            }, {
+                id: "id",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "link",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "longURL",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "title",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "archived",
+                dataType: tableau.dataTypeEnum.boolean
+            }, {
+                id: "tag1",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "tag2",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "tag3",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "tag4",
+                dataType: tableau.dataTypeEnum.string
+            }];
+    
+            var tableSchema = {
+                id: "bitlyData",
+                alias: "Bitlinks Data",
+                columns: cols
+            };
+    
+            schemaCallback([tableSchema]);
+        };
+  
+
       var settings = {
         "url": "https://api-ssl.bitly.com/v4/groups/Bh7lfaC9nWX/bitlinks",
         "method": "GET",
         "timeout": 0,
         "headers": {
-        "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
-     },
-         
-      
-      var xhr = $.ajax(settings).done(function (response) {
-            if (data.links) {
-              var links = data.links;
-                var ii;
-                for (ii = 0; ii < links.length; ++ii) {
-                  
-                  var entry = {'CreatedAt': links[ii].created_at,
-                                  'id': links[ii].id,
-                                  'link': links[ii].link,
-                                  'longURL': links[ii].long_url,
-                                  'title': links[ii].title,
-                                  'archived': links[ii].archived,
-                                  'tag1': links[ii].tag[0],
-                                  'tag2': links[ii].tag[1],
-                                  'tag3': links[ii].tag[2],
-                                  'tag4': links[ii].tag[3]
-                               };
-                               bitlinkID.id=id;
-                               console.log(bitlinkID.id);
-                    dataToReturn.push(entry);
-                }
-                tableau.dataCallback(dataToReturn, lastRecordToken, false);
-              }
-              else {
-                tableau.abortWithError("No results found");
-              }
+          "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            // If the connection fails, log the error and return an empty set.
-            tableau.log("Connection error: " + xhr.responseText + "\n" + thrownError);
-            tableau.abortWithError("Error while trying to connect to the BoardGameGeek data source.");
-        }
-      });
-  }
+      };
+      
+      myConnector.getData = function(table, doneCallback) {
+         
+         $.ajax(settings), function (response) {
+              var links = data.links;
+              var bitlinkID = new Object();
+                  tableData = [];
+
+                  for (var i = 0, len = links.length; i < len; i++) {
+                    tableData.push({
+                        "createdAt": links[i].created_at,
+                        "id": links[i].id,
+                        "link": links[i].link,
+                        "longURL": links[i].long_url,
+                        "title": links[i].title,
+                        "archived": links[ii].archived,
+                        "tag1": links[i].tag[0],
+                        "tag2": links[i].tag[1],
+                        "tag3": links[i].tag[2],
+                        "tag4": links[i].tag[3]
+                    });
+                    bitlinkID.id=id;
+                    console.log(bitlinkID.id);
+                }
     
+                table.appendRows(tableData);
+                doneCallback();
+            };
+        };
     
-    tableau.registerConnector(myConnector);
-        
-})();
+        tableau.registerConnector(myConnector);
 
-
-$(document).ready(function() {
-      $("#submitButton").click(function() {
-      var bggUsername = $('#bggUsername').val().trim();
-      if (bggUsername) {
-          tableau.connectionName = "BoardGameGeek collection data for user " + bggUsername;
-          tableau.connectionData = bggUsername;
-          tableau.submit();
-      }
-      });
-  });
-
+        // Create event listeners for when the user submits the form
+        $(document).ready(function() {
+            $("#submitButton").click(function() {
+                tableau.connectionName = "Bitly Data"; // This will be the data source name in Tableau
+                tableau.submit(); // This sends the connector object to Tableau
+            });
+        });
+    })();
+    
