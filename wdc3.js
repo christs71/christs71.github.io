@@ -8,7 +8,7 @@
         // Define the schema
         myConnector.getSchema = function(schemaCallback) {
             var cols = [{
-                createdAt: "createdAt",
+                id: "createdAt",
                 dataType: tableau.dataTypeEnum.string
             }, {
                 id: "id",
