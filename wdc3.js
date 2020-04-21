@@ -64,7 +64,7 @@
 
              console.log(response);
               var links = data.links;
-              var bitlinkID = new Object();
+              var bitlinkID = {}; //declares the bitlink object
                   tableData = [];
 
                   for (var i = 0, len = links.length; i < len; i++) {
@@ -80,8 +80,8 @@
                         "tag3": links[i].tag[2],
                         "tag4": links[i].tag[3]
                     });
-                    bitlinkID.id=id;
-                    tableau.log(bitlinkID.id);
+                    //bitlinkID.id=id;
+                    //tableau.log(bitlinkID.id);
                 }
                 console.log("this is right before it appends the rows")
                 tableau.log("This is right before it appends the rows");
