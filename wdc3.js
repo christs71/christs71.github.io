@@ -61,6 +61,8 @@
       myConnector.getData = function(table, doneCallback) {
          
          $.ajax(settings), function (response) {
+
+             console.log(response);
               var links = data.links;
               var bitlinkID = new Object();
                   tableData = [];
@@ -81,6 +83,7 @@
                     bitlinkID.id=id;
                     tableau.log(bitlinkID.id);
                 }
+                console.log("this is right before it appends the rows")
                 tableau.log("This is right before it appends the rows");
                 table.appendRows(tableData);
                 doneCallback();
