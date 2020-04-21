@@ -24,6 +24,20 @@
         schemaCallback([tableInfo]);
     };
     myConnector.getData = function(table, doneCallback) {
+ 
+        apiCall = "https://api-ssl.bitly.com/v4/";
+        groupGuid = "Bh7lfaC9nWX";
+        $.ajaxSetup({
+          headers : {
+                    'Authorization' : 'Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526' }        
+        references:{
+                    'group' :'https://api-ssl.bitly.com/v4/groups/GUID' }
+                    });
+
+        
+        
+        
+        
         $.getJSON("http://www.nyc.gov/html/tlc/downloads/csv/data_reports_monthly_indicators_yellow.json",function(resp) {
             var feat = resp;
             tableData = [];
