@@ -79,9 +79,9 @@
                         "tag4": links[i].tag[3]
                     });
                     bitlinkID.id=id;
-                    console.log(bitlinkID.id);
+                    tableau.log(bitlinkID.id);
                 }
-    
+                tableau.log("This is right before it appends the rows");
                 table.appendRows(tableData);
                 doneCallback();
             };
