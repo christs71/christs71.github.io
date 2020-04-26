@@ -41,9 +41,7 @@
         for (var i = 0; i < feat.length; i++) {
             tableData.push({
                 "groupGuid": feat[i].guid,
-                "groupName": feat[i].name,
-                "count": feat[i].likes.count,
-                "tags": feat[i].tags
+                "groupName": feat[i].name
 
             });
         }
@@ -56,13 +54,10 @@
 
     tableau.registerConnector(myConnector);
 
-    $(document).ready(function () {
-
-    $("#submitButton").click(function () {
-    	var tickerSymbol = $('#ticker').val().trim();
-    	tableau.connectionData = groupData;
-        tableau.connectionName = "Results for " + groupData;
-        tableau.submit();
+    $(document).ready(function() {
+        $("#submitButton").click(function() {
+            tableau.connectionName = "Bitly Data"; // This will be the data source name in Tableau
+            tableau.submit(); // This sends the connector object to Tableau
+        });
     });
-});
 })();
