@@ -4,7 +4,7 @@
     myConnector.getSchema = function (schemaCallback) {
     var cols = [
         { id : "groupGuid", alias : "groupGuid", dataType : tableau.dataTypeEnum.string},
-       	 {  id : "groupName", alias : "groupName", dataType : tableau.dataTypeEnum.string },
+       	 {  id : "groupName", alias : "groupName", dataType : tableau.dataTypeEnum.string }
      	 
     ];
 
