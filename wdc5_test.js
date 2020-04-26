@@ -53,17 +53,17 @@
                         "group_name": groups[i].name
                     });
                     console.log([i]);
-                    
+
                     //bitlinkID.id=id;
                     //tableau.log(bitlinkID.id);
                 }
-                console.log("this is right before it appends the rows")
+                console.log("this is right before it appends the rows");
                 tableau.log("This is right before it appends the rows");
                 table.appendRows(tableData);
                 doneCallback();
             };
         };
-    
+    console.log(tableData);
         tableau.registerConnector(myConnector);
 
         // Create event listeners for when the user submits the form
