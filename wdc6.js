@@ -17,19 +17,20 @@
     schemaCallback([tableInfo]);
 };
 
-        //Gets bitlinks for a group
-      var settings = {
-        "url": "https://api-ssl.bitly.com/v4/groups",
-        "method": "GET",
-        "timeout": 0,
-        "headers": {
-          "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
-        },
-      };
+
 
     myConnector.getData = function (table, doneCallback) {
-    		var groupData = tableau.connectionData;
-            $.ajax(settings, function (resp) {
+        //Gets bitlinks for a group
+        var settings = {
+            "url": "https://api-ssl.bitly.com/v4/groups",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+              "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
+            },
+          };
+
+        $.ajax(settings, function (resp) {
     	            	
            tableau.log(resp);
            
