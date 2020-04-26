@@ -30,11 +30,11 @@
             },
           };
 
-        $.ajax(settings, function (resp) {
+        $.ajax((settings), function (resp) {
     	            	
            tableau.log(resp);
            
-        	var feat = resp.groups,
+        	var feat = resp.groups;
            tableData = [];
            
 
@@ -54,11 +54,12 @@
     };
 
     tableau.registerConnector(myConnector);
+    tableau.submit();
 
-    $(document).ready(function() {
-        $("#submitButton").click(function() {
-            tableau.connectionName = "Bitly Data"; // This will be the data source name in Tableau
-            tableau.submit(); // This sends the connector object to Tableau
-        });
-    });
+//    $(document).ready(function(){
+//        $("#submitButton").click(function() { // This event fires when a button is clicked
+//          tableau.connectionName = 'Bitly Groups';
+//          tableau.submit();
+//        });
+ //   });
 })();
