@@ -33,7 +33,7 @@
     	            	
            tableau.log(resp);
            
-        	var feat = resp.data.groups,
+        	var feat = resp.groups,
            tableData = [];
            
 
