@@ -29,7 +29,7 @@
 
     myConnector.getData = function (table, doneCallback) {
     		var groupData = tableau.connectionData;
-            $.ajax(settings, function (response) {
+            $.ajax(settings, function (resp) {
     	            	
            tableau.log(resp);
            
