@@ -53,13 +53,13 @@
   
   
   $(document).ready(function() {
-		$("#submitButton").click(function() {
-		//var bggUsername = $('#bggUsername').val().trim();
-		//if (bggUsername) {
-		//	tableau.connectionName = "BoardGameGeek collection data for user " + bggUsername;
-		//	tableau.connectionData = bggUsername;
+	$("#submitButton").click(function() {
+		var bggUsername = "testUser";
+		if (bggUsername) {
+			tableau.connectionName = "BoardGameGeek collection data for user " + bggUsername;
+			tableau.connectionData = bggUsername;
 			tableau.submit();
-//		}
+		}
 		});
 	});
   
