@@ -13,15 +13,17 @@
 		//var bggUsername = tableau.connectionData;
 		
 		//connectionUri = 'http://bgg-api.herokuapp.com/api/v1/collection?username=' + bggUsername
+        
+        var settings = {
+            "url": "https://api-ssl.bitly.com/v4/groups",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+              "Authorization": "Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526"
+            },
+          };
 		
-		
-		var xhr = $.ajax({
-		  url: 'https://api-ssl.bitly.com/v4/groups',
-		  method: 'GET',
-		  timeout: 0,
-		  headers: {
-			  Authorization: 'Bearer 63ef42580f0dfc8517612b31d2aa1c9c37cba526'},
-		  success: function (data) {
+		var xhr = $.ajax(settings, function(data) {
 			  if (data.groups) {
 			    var groups = data.groups;
 				  var ii;
