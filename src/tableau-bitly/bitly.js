@@ -150,8 +150,11 @@ bitly = (
 
 				var groups = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/groups';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/groups',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
@@ -199,8 +202,11 @@ bitly = (
 
 				var bitlinks = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/groups/' + group[ 'guid' ] + '/bitlinks';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/groups/' + group[ 'guid' ] + '/bitlinks',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
@@ -250,8 +256,11 @@ bitly = (
 
 					var clicks = [];
 
+					var url = 'https://api-ssl.bitly.com/v4/bitlinks/' + bitlink[ 'id' ] + '/clicks';
+					var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 					$.ajax( {
-						'url': 'https://api-ssl.bitly.com/v4/bitlinks/' + bitlink[ 'id' ] + '/clicks',
+						'url': proxy + url,
 						'method': 'GET',
 						'timeout': 0,
 						'headers': {
@@ -301,8 +310,11 @@ bitly = (
 
 				var campaigns = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/campaigns';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/campaigns',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
@@ -356,8 +368,11 @@ bitly = (
 
 					var channels = [];
 
+					var url = 'https://api-ssl.bitly.com/v4/channels';
+					var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 					$.ajax( {
-						'url': 'https://api-ssl.bitly.com/v4/channels',
+						'url': proxy + url,
 						'method': 'GET',
 						'timeout': 0,
 						'headers': {

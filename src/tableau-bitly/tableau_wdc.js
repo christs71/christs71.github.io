@@ -595,6 +595,9 @@ tableau_wdc = (
 		};
 
 
+		/**
+		 *
+		 */
 		self.initialize_tableau = function() {
 
 			console.log( 'tableau initialized!' );
@@ -606,6 +609,8 @@ tableau_wdc = (
 
 			/**
 			 * Define the schema
+			 *
+			 * @param schemaCallback
 			 */
 			self[ 'connector' ].getSchema = function( schemaCallback ) {
 
@@ -618,10 +623,13 @@ tableau_wdc = (
 
 			/**
 			 * Download/Set the data to be used in Tableau.
+			 *
+			 * @param table
+			 * @param doneCallback
 			 */
 			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				var test = new Promise( async function( resolve, reject ) {
+				var response = new Promise( async function( resolve, reject ) {
 
 					try {
 
@@ -658,7 +666,7 @@ tableau_wdc = (
 
 				} );
 
-				if ( test === true ) {
+				if ( response === true ) {
 					doneCallback();
 				}
 
