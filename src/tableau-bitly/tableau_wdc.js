@@ -629,7 +629,7 @@ tableau_wdc = (
 							await self.fetch_data();
 						}
 
-						var check = await setInterval( function() {
+						var check = setInterval( function() {
 
 							if ( self[ 'fetched' ] === true ) {
 
@@ -642,8 +642,8 @@ tableau_wdc = (
 								}
 
 								table.appendRows( data );
-
-								resolve( doneCallback );
+								doneCallback();
+								resolve( true );
 
 							}
 
