@@ -643,7 +643,7 @@ tableau_wdc = (
 
 								table.appendRows( data );
 
-								resolve( doneCallback() );
+								resolve( true );
 
 							}
 
