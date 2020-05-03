@@ -12,6 +12,8 @@ tableau_wdc = (
 		 *     references: [], custom_bitlinks: [], groups: [], links: [], tags: []}}}
 		 */
 		var self = {
+			triggered: false,
+			fetched: false,
 			tables: {
 				'groups': {},
 				'links': {},
@@ -327,8 +329,11 @@ tableau_wdc = (
 
 				if ( bitly !== undefined ) {
 
+					self[ 'triggered' ] = true;
+
 					await bitly.initialize(); // Basically "instantiates" the "class".
 					data = bitly[ 'data' ][ 'groups' ];
+					self[ 'fetched' ] = true;
 
 				}
 
@@ -590,6 +595,9 @@ tableau_wdc = (
 		};
 
 
+		/**
+		 *
+		 */
 		self.initialize_tableau = function() {
 
 			console.log( 'tableau initialized!' );
@@ -601,6 +609,8 @@ tableau_wdc = (
 
 			/**
 			 * Define the schema
+			 *
+			 * @param schemaCallback
 			 */
 			self[ 'connector' ].getSchema = function( schemaCallback ) {
 
@@ -613,25 +623,51 @@ tableau_wdc = (
 
 			/**
 			 * Download/Set the data to be used in Tableau.
+			 *
+			 * @param table
+			 * @param doneCallback
 			 */
-			self[ 'connector' ].getData = async function( table, doneCallback ) {
+			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				try {
+				var response = new Promise( async function( resolve, reject ) {
 
-					await self.fetch_data();
+					try {
 
-					var data = [];
+						if ( self[ 'triggered' ] === false ) {
+							await self.fetch_data();
+						}
 
-					if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
-						data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
+						var check = setInterval( function() {
+
+							if ( self[ 'fetched' ] === true ) {
+
+								clearInterval( check );
+
+								var data = [];
+
+								if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
+									data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
+								}
+
+								table.appendRows( data );
+
+								resolve( true );
+
+							}
+
+						}, 250 );
+
+					} catch ( error ) {
+
+						console.log( error );
+						reject( error );
+
 					}
 
-					table.appendRows( data );
+				} );
 
+				if ( response === true ) {
 					doneCallback();
-
-				} catch ( error ) {
-					console.log( error );
 				}
 
 			};

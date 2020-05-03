@@ -9,7 +9,8 @@ bitly = (
 
 		/**
 		 *
-		 * @type {{data: {groups: []}, allowed_groups: [string], auth_token: string, fetched: {channels: null, campaigns: null, groups: null, clicks: null, bitlinks: null}}}
+		 * @type {{data: {groups: []}, allowed_groups: [string], auth_token: string, fetched: {channels: null, campaigns: null, groups:
+		 *     null, clicks: null, bitlinks: null}}}
 		 */
 		var self = {
 			allowed_groups: [
@@ -149,12 +150,16 @@ bitly = (
 
 				var groups = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/groups';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/groups',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/json',
 					},
 					'success': function( response ) {
 
@@ -197,12 +202,19 @@ bitly = (
 
 				var bitlinks = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/groups/' + group[ 'guid' ] + '/bitlinks';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/groups/' + group[ 'guid' ] + '/bitlinks',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/json',
+					},
+					'data': {
+						'size': 100,
 					},
 					'success': function( response ) {
 
@@ -244,12 +256,16 @@ bitly = (
 
 					var clicks = [];
 
+					var url = 'https://api-ssl.bitly.com/v4/bitlinks/' + bitlink[ 'id' ] + '/clicks';
+					var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 					$.ajax( {
-						'url': 'https://api-ssl.bitly.com/v4/bitlinks/' + bitlink[ 'id' ] + '/clicks',
+						'url': proxy + url,
 						'method': 'GET',
 						'timeout': 0,
 						'headers': {
 							'Authorization': 'Bearer ' + self[ 'auth_token' ],
+							'Content-Type': 'application/json',
 						},
 						'success': function( response ) {
 
@@ -294,12 +310,16 @@ bitly = (
 
 				var campaigns = [];
 
+				var url = 'https://api-ssl.bitly.com/v4/campaigns';
+				var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 				$.ajax( {
-					'url': 'https://api-ssl.bitly.com/v4/campaigns',
+					'url': proxy + url,
 					'method': 'GET',
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/json',
 					},
 					'data': {
 						'group_guid': group[ 'guid' ],
@@ -348,12 +368,16 @@ bitly = (
 
 					var channels = [];
 
+					var url = 'https://api-ssl.bitly.com/v4/channels';
+					var proxy = 'https://cors-anywhere.herokuapp.com/';
+
 					$.ajax( {
-						'url': 'https://api-ssl.bitly.com/v4/channels',
+						'url': proxy + url,
 						'method': 'GET',
 						'timeout': 0,
 						'headers': {
 							'Authorization': 'Bearer ' + self[ 'auth_token' ],
+							'Content-Type': 'application/json',
 						},
 						'data': {
 							'group_guid': group[ 'guid' ],
