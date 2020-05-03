@@ -9,7 +9,8 @@ bitly = (
 
 		/**
 		 *
-		 * @type {{data: {groups: []}, allowed_groups: [string], auth_token: string, fetched: {channels: null, campaigns: null, groups: null, clicks: null, bitlinks: null}}}
+		 * @type {{data: {groups: []}, allowed_groups: [string], auth_token: string, fetched: {channels: null, campaigns: null, groups:
+		 *     null, clicks: null, bitlinks: null}}}
 		 */
 		var self = {
 			allowed_groups: [

@@ -12,6 +12,8 @@ tableau_wdc = (
 		 *     references: [], custom_bitlinks: [], groups: [], links: [], tags: []}}}
 		 */
 		var self = {
+			triggered: false,
+			fetched: false,
 			tables: {
 				'groups': {},
 				'links': {},
@@ -327,8 +329,11 @@ tableau_wdc = (
 
 				if ( bitly !== undefined ) {
 
+					self[ 'triggered' ] = true;
+
 					await bitly.initialize(); // Basically "instantiates" the "class".
 					data = bitly[ 'data' ][ 'groups' ];
+					self[ 'fetched' ] = true;
 
 				}
 
@@ -618,17 +623,28 @@ tableau_wdc = (
 
 				try {
 
-					await self.fetch_data();
-
-					var data = [];
-
-					if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
-						data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
+					if ( self[ 'triggered' ] === false ) {
+						await self.fetch_data();
 					}
 
-					table.appendRows( data );
+					var check = setInterval( function() {
 
-					doneCallback();
+						if ( self[ 'fetched' ] === true ) {
+
+							var data = [];
+
+							if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
+								data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
+							}
+
+							table.appendRows( data );
+							doneCallback();
+
+							clearInterval( check );
+
+						}
+
+					}, 1000 );
 
 				} catch ( error ) {
 					console.log( error );
