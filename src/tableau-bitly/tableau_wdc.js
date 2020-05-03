@@ -619,36 +619,44 @@ tableau_wdc = (
 			/**
 			 * Download/Set the data to be used in Tableau.
 			 */
-			self[ 'connector' ].getData = async function( table, doneCallback ) {
+			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				try {
+				return new Promise( async function( resolve, reject ) {
 
-					if ( self[ 'triggered' ] === false ) {
-						await self.fetch_data();
-					}
+					try {
 
-					var check = setInterval( function() {
-
-						if ( self[ 'fetched' ] === true ) {
-
-							var data = [];
-
-							if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
-								data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
-							}
-
-							table.appendRows( data );
-							doneCallback();
-
-							clearInterval( check );
-
+						if ( self[ 'triggered' ] === false ) {
+							await self.fetch_data();
 						}
 
-					}, 1000 );
+						var check = await setInterval( function() {
 
-				} catch ( error ) {
-					console.log( error );
-				}
+							if ( self[ 'fetched' ] === true ) {
+
+								clearInterval( check );
+
+								var data = [];
+
+								if ( self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ] !== undefined ) {
+									data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
+								}
+
+								table.appendRows( data );
+
+								resolve( doneCallback() );
+
+							}
+
+						}, 250 );
+
+					} catch ( error ) {
+
+						console.log( error );
+						reject( error );
+
+					}
+
+				} );
 
 			};
 
