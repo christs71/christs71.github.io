@@ -619,9 +619,9 @@ tableau_wdc = (
 			/**
 			 * Download/Set the data to be used in Tableau.
 			 */
-			self[ 'connector' ].getData = function( table, doneCallback ) {
+			self[ 'connector' ].getData = async function( table, doneCallback ) {
 
-				return new Promise( async function( resolve, reject ) {
+				var test = await new Promise( async function( resolve, reject ) {
 
 					try {
 
@@ -657,6 +657,10 @@ tableau_wdc = (
 					}
 
 				} );
+
+				if ( test === true ) {
+					doneCallback();
+				}
 
 			};
 
