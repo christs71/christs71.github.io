@@ -207,6 +207,9 @@ bitly = (
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
 						'Content-Type': 'application/json',
 					},
+					'data': {
+						'size': 100,
+					},
 					'success': function( response ) {
 
 						console.log( 'success', response );
