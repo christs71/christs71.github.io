@@ -621,7 +621,7 @@ tableau_wdc = (
 			 */
 			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				return new Promise( async function( resolve, reject ) {
+				var test = new Promise( async function( resolve, reject ) {
 
 					try {
 
@@ -642,7 +642,7 @@ tableau_wdc = (
 								}
 
 								table.appendRows( data );
-								doneCallback();
+
 								resolve( true );
 
 							}
@@ -657,6 +657,10 @@ tableau_wdc = (
 					}
 
 				} );
+
+				if ( test === true ) {
+					doneCallback();
+				}
 
 			};
 
