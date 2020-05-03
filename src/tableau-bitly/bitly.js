@@ -156,6 +156,7 @@ bitly = (
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 					},
 					'success': function( response ) {
 
@@ -204,6 +205,7 @@ bitly = (
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 					},
 					'success': function( response ) {
 
@@ -251,6 +253,7 @@ bitly = (
 						'timeout': 0,
 						'headers': {
 							'Authorization': 'Bearer ' + self[ 'auth_token' ],
+							'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 						},
 						'success': function( response ) {
 
@@ -301,6 +304,7 @@ bitly = (
 					'timeout': 0,
 					'headers': {
 						'Authorization': 'Bearer ' + self[ 'auth_token' ],
+						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 					},
 					'data': {
 						'group_guid': group[ 'guid' ],
@@ -355,6 +359,7 @@ bitly = (
 						'timeout': 0,
 						'headers': {
 							'Authorization': 'Bearer ' + self[ 'auth_token' ],
+							'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 						},
 						'data': {
 							'group_guid': group[ 'guid' ],
