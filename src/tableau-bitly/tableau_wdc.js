@@ -1,6 +1,4 @@
-var tableau_wdc = window[ 'tableau_wdc' ] || {};
-
-tableau_wdc = (
+var tableau_wdc = (
 
 	function( $ ) {
 
@@ -69,7 +67,7 @@ tableau_wdc = (
 			$( document ).ready( function() {
 
 				$( '#submitButton' ).on( 'click', function() {
-
+					self.fetch_data();
 					tableau.connectionName = 'Bitly Data'; // This will be the data source name in Tableau
 					tableau.submit(); // This sends the connector object to Tableau
 
@@ -629,7 +627,7 @@ tableau_wdc = (
 			 */
 			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				var promise = new Promise( async function( resolve, reject ) {
+				var response = new Promise( async function( resolve, reject ) {
 
 					try {
 
@@ -666,12 +664,9 @@ tableau_wdc = (
 
 				} );
 
-				promise.then( function( response ) {
-					console.log( 'SUCCESS' );
+				if ( response === true ) {
 					doneCallback();
-				}, function( error ) {
-					console.log( 'error' );
-				} );
+				}
 
 			};
 
@@ -685,6 +680,4 @@ tableau_wdc = (
 
 )( jQuery );
 
-if ( tableau !== undefined && bitly !== undefined ) {
-	tableau_wdc.initialize(); // Basically "instantiates" the "class".
-}
+tableau_wdc.initialize(); // Basically "instantiates" the "class".

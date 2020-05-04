@@ -1,6 +1,4 @@
-var bitly = window[ 'bitly' ] || {};
-
-bitly = (
+var bitly = (
 
 	/**
 	 * Essentially a "class".
@@ -146,15 +144,15 @@ bitly = (
 		 */
 		self.get_groups = function() {
 
-			return new Promise( async function( resolve, reject ) {
+			return new Promise( function( resolve, reject ) {
 
 				var groups = [];
 
 				var url = 'https://api-ssl.bitly.com/v4/groups';
-				var proxy = 'https://cors-anywhere.herokuapp.com/';
+				//var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 				$.ajax( {
-					'url': proxy + url,
+					'url': url,
 					'type': 'GET',
 					'contentType': 'application/json',
 					'dataType': 'json',
@@ -199,24 +197,21 @@ bitly = (
 		 */
 		self.get_bitlinks = function( group ) {
 
-			return new Promise( async function( resolve, reject ) {
+			return new Promise( function( resolve, reject ) {
 
 				var bitlinks = [];
 
 				var url = 'https://api-ssl.bitly.com/v4/groups/' + group[ 'guid' ] + '/bitlinks';
-				var proxy = 'https://cors-anywhere.herokuapp.com/';
+				//var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 				$.ajax( {
-					'url': proxy + url,
+					'url': url,
 					'type': 'GET',
 					'contentType': 'application/json',
 					'dataType': 'json',
 					'beforeSend': function( xhr ) {
 						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
 						xhr.setRequestHeader( 'Accept', 'application/json' );
-					},
-					'data': {
-						'size': 100,
 					},
 					'success': function( response ) {
 
@@ -252,17 +247,17 @@ bitly = (
 		 */
 		self.get_clicks = function( bitlink ) {
 
-			return new Promise( async function( resolve, reject ) {
+			return new Promise( function( resolve, reject ) {
 
-				await setTimeout( async function() {
+				setTimeout( function() {
 
 					var clicks = [];
 
 					var url = 'https://api-ssl.bitly.com/v4/bitlinks/' + bitlink[ 'id' ] + '/clicks';
-					var proxy = 'https://cors-anywhere.herokuapp.com/';
+					//var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 					$.ajax( {
-						'url': proxy + url,
+						'url': url,
 						'type': 'GET',
 						'contentType': 'application/json',
 						'dataType': 'json',
@@ -309,24 +304,24 @@ bitly = (
 		 */
 		self.get_campaigns = function( group ) {
 
-			return new Promise( async function( resolve, reject ) {
+			return new Promise( function( resolve, reject ) {
 
 				var campaigns = [];
 
 				var url = 'https://api-ssl.bitly.com/v4/campaigns';
-				var proxy = 'https://cors-anywhere.herokuapp.com/';
+				//var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 				$.ajax( {
-					'url': proxy + url,
+					'url': url,
 					'type': 'GET',
 					'contentType': 'application/json',
 					'dataType': 'json',
+					'data': {
+						'group_guid': group[ 'guid' ],
+					},
 					'beforeSend': function( xhr ) {
 						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
 						xhr.setRequestHeader( 'Accept', 'application/json' );
-					},
-					'data': {
-						'group_guid': group[ 'guid' ],
 					},
 					'success': function( response ) {
 
@@ -366,27 +361,27 @@ bitly = (
 		 */
 		self.get_channels = function( group, campaign ) {
 
-			return new Promise( async function( resolve, reject ) {
+			return new Promise( function( resolve, reject ) {
 
-				await setTimeout( async function() {
+				setTimeout( function() {
 
 					var channels = [];
 
 					var url = 'https://api-ssl.bitly.com/v4/channels';
-					var proxy = 'https://cors-anywhere.herokuapp.com/';
+					//var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 					$.ajax( {
-						'url': proxy + url,
+						'url': url,
 						'type': 'GET',
 						'contentType': 'application/json',
 						'dataType': 'json',
-						'beforeSend': function( xhr ) {
-							xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
-							xhr.setRequestHeader( 'Accept', 'application/json' );
-						},
 						'data': {
 							'group_guid': group[ 'guid' ],
 							'campaign_guid': campaign[ 'guid' ],
+						},
+						'beforeSend': function( xhr ) {
+							xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+							xhr.setRequestHeader( 'Accept', 'application/json' );
 						},
 						'success': function( response ) {
 
