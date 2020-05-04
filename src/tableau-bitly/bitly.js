@@ -155,11 +155,12 @@ bitly = (
 
 				$.ajax( {
 					'url': proxy + url,
-					'method': 'GET',
-					'timeout': 0,
-					'headers': {
-						'Authorization': 'Bearer ' + self[ 'auth_token' ],
-						'Content-Type': 'application/json',
+					'type': 'GET',
+					'contentType': 'application/json',
+					'dataType': 'json',
+					'beforeSend': function( xhr ) {
+						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+						xhr.setRequestHeader( 'Accept', 'application/json' );
 					},
 					'success': function( response ) {
 
@@ -207,11 +208,12 @@ bitly = (
 
 				$.ajax( {
 					'url': proxy + url,
-					'method': 'GET',
-					'timeout': 0,
-					'headers': {
-						'Authorization': 'Bearer ' + self[ 'auth_token' ],
-						'Content-Type': 'application/json',
+					'type': 'GET',
+					'contentType': 'application/json',
+					'dataType': 'json',
+					'beforeSend': function( xhr ) {
+						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+						xhr.setRequestHeader( 'Accept', 'application/json' );
 					},
 					'data': {
 						'size': 100,
@@ -261,11 +263,12 @@ bitly = (
 
 					$.ajax( {
 						'url': proxy + url,
-						'method': 'GET',
-						'timeout': 0,
-						'headers': {
-							'Authorization': 'Bearer ' + self[ 'auth_token' ],
-							'Content-Type': 'application/json',
+						'type': 'GET',
+						'contentType': 'application/json',
+						'dataType': 'json',
+						'beforeSend': function( xhr ) {
+							xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+							xhr.setRequestHeader( 'Accept', 'application/json' );
 						},
 						'success': function( response ) {
 
@@ -315,11 +318,12 @@ bitly = (
 
 				$.ajax( {
 					'url': proxy + url,
-					'method': 'GET',
-					'timeout': 0,
-					'headers': {
-						'Authorization': 'Bearer ' + self[ 'auth_token' ],
-						'Content-Type': 'application/json',
+					'type': 'GET',
+					'contentType': 'application/json',
+					'dataType': 'json',
+					'beforeSend': function( xhr ) {
+						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+						xhr.setRequestHeader( 'Accept', 'application/json' );
 					},
 					'data': {
 						'group_guid': group[ 'guid' ],
@@ -373,11 +377,12 @@ bitly = (
 
 					$.ajax( {
 						'url': proxy + url,
-						'method': 'GET',
-						'timeout': 0,
-						'headers': {
-							'Authorization': 'Bearer ' + self[ 'auth_token' ],
-							'Content-Type': 'application/json',
+						'type': 'GET',
+						'contentType': 'application/json',
+						'dataType': 'json',
+						'beforeSend': function( xhr ) {
+							xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
+							xhr.setRequestHeader( 'Accept', 'application/json' );
 						},
 						'data': {
 							'group_guid': group[ 'guid' ],
