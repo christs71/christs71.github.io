@@ -1,6 +1,6 @@
 var tableau_wdc = (
 
-	function( $ ) {
+	function() {
 
 		/**
 		 *
@@ -678,6 +678,6 @@ var tableau_wdc = (
 
 	}
 
-)( jQuery );
+)();
 
 tableau_wdc.initialize(); // Basically "instantiates" the "class".

@@ -3,7 +3,7 @@ var bitly = (
 	/**
 	 * Essentially a "class".
 	 */
-	function( $ ) {
+	function() {
 
 		/**
 		 *
@@ -417,4 +417,4 @@ var bitly = (
 
 	}
 
-)( jQuery );
+)();
