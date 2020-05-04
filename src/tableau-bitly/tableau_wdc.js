@@ -1,8 +1,6 @@
-var tableau_wdc = window[ 'tableau_wdc' ] || {};
+var tableau_wdc = (
 
-tableau_wdc = (
-
-	function( $ ) {
+	function() {
 
 		/**
 		 *
@@ -133,10 +131,6 @@ tableau_wdc = (
 					alias: 'status',
 					dataType: tableau[ 'dataTypeEnum' ][ 'bool' ],
 				},
-				{
-					id: 'unit_reference',
-					dataType: tableau[ 'dataTypeEnum' ][ 'string' ],
-				},
 			];
 
 
@@ -213,7 +207,7 @@ tableau_wdc = (
 					dataType: tableau[ 'dataTypeEnum' ][ 'string' ],
 				},
 				{
-					id: 'created_at',
+					id: 'created',
 					alias: 'date_created',
 					dataType: tableau[ 'dataTypeEnum' ][ 'datetime' ],
 				},
@@ -463,7 +457,7 @@ tableau_wdc = (
 
 				}
 
-				var links = group[ 'bitlinks' ][ 'links' ];
+				var links = group[ 'bitlinks' ];
 
 				if ( links[ 'length' ] >= 1 ) {
 
@@ -473,14 +467,14 @@ tableau_wdc = (
 
 						// do something with a Link
 
-						var link_data = {
+						self[ 'rows' ][ 'links' ].push( {
 							'created_at': link[ 'created_at' ],
 							'id': link[ 'id' ],
 							'link': link[ 'link' ],
 							'long_url': link[ 'long_url' ],
 							'title': link[ 'title' ],
 							'archived': link[ 'archived' ],
-						};
+						} );
 
 						var clicks = link[ 'clicks' ];
 
@@ -492,8 +486,6 @@ tableau_wdc = (
 
 								// do something with a Link Click
 
-								link_data[ 'unit_reference' ] = click[ 'unit_reference' ];
-
 								self[ 'rows' ][ 'link_clicks' ].push( {
 									'link_id': link[ 'id' ],
 									'date': click[ 'date' ],
@@ -503,9 +495,6 @@ tableau_wdc = (
 							}
 
 						}
-
-						// Pushed to link rows AFTER Link clicks, because Link Clicks append Unit Reference to the Link.
-						self[ 'rows' ][ 'links' ].push( link_data );
 
 						var custom_bitlinks = link[ 'custom_bitlinks' ];
 
@@ -680,8 +669,6 @@ tableau_wdc = (
 
 	}
 
-)( jQuery );
+)();
 
-if ( tableau !== undefined && bitly !== undefined ) {
-	tableau_wdc.initialize(); // Basically "instantiates" the "class".
-}
+tableau_wdc.initialize(); // Basically "instantiates" the "class".
