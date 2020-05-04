@@ -131,10 +131,6 @@ var tableau_wdc = (
 					alias: 'status',
 					dataType: tableau[ 'dataTypeEnum' ][ 'bool' ],
 				},
-				{
-					id: 'unit_reference',
-					dataType: tableau[ 'dataTypeEnum' ][ 'string' ],
-				},
 			];
 
 
@@ -461,7 +457,7 @@ var tableau_wdc = (
 
 				}
 
-				var links = group[ 'bitlinks' ][ 'links' ];
+				var links = group[ 'bitlinks' ];
 
 				if ( links[ 'length' ] >= 1 ) {
 
@@ -471,14 +467,14 @@ var tableau_wdc = (
 
 						// do something with a Link
 
-						var link_data = {
+						self[ 'rows' ][ 'links' ].push( {
 							'created_at': link[ 'created_at' ],
 							'id': link[ 'id' ],
 							'link': link[ 'link' ],
 							'long_url': link[ 'long_url' ],
 							'title': link[ 'title' ],
 							'archived': link[ 'archived' ],
-						};
+						} );
 
 						var clicks = link[ 'clicks' ];
 
@@ -490,8 +486,6 @@ var tableau_wdc = (
 
 								// do something with a Link Click
 
-								link_data[ 'unit_reference' ] = click[ 'unit_reference' ];
-
 								self[ 'rows' ][ 'link_clicks' ].push( {
 									'link_id': link[ 'id' ],
 									'date': click[ 'date' ],
@@ -501,9 +495,6 @@ var tableau_wdc = (
 							}
 
 						}
-
-						// Pushed to link rows AFTER Link clicks, because Link Clicks append Unit Reference to the Link.
-						self[ 'rows' ][ 'links' ].push( link_data );
 
 						var custom_bitlinks = link[ 'custom_bitlinks' ];
 
