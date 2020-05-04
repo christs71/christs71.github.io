@@ -257,10 +257,9 @@ var bitly = (
 		 * Retrieves all Bitlinks in Group from Bitly.
 		 *
 		 * @param group
-		 * @param page
 		 * @returns {Promise<unknown>}
 		 */
-		self.get_bitlinks = function( group, page = 0 ) {
+		self.get_bitlinks = function( group ) {
 
 			return new Promise( function( resolve, reject ) {
 
@@ -271,11 +270,6 @@ var bitly = (
 					'type': 'GET',
 					'contentType': 'application/json',
 					'dataType': 'json',
-					'data': {
-						'page': (
-							page + 1
-						),
-					},
 					'beforeSend': function( xhr ) {
 						xhr.setRequestHeader( 'Authorization', 'Bearer ' + self[ 'auth_token' ] );
 						xhr.setRequestHeader( 'Accept', 'application/json' );
