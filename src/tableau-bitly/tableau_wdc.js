@@ -629,7 +629,7 @@ tableau_wdc = (
 			 */
 			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				var response = new Promise( async function( resolve, reject ) {
+				var promise = new Promise( async function( resolve, reject ) {
 
 					try {
 
@@ -666,9 +666,12 @@ tableau_wdc = (
 
 				} );
 
-				if ( response === true ) {
+				promise.then( function( response ) {
+					console.log( 'SUCCESS' );
 					doneCallback();
-				}
+				}, function( error ) {
+					console.log( 'error' );
+				} );
 
 			};
 
