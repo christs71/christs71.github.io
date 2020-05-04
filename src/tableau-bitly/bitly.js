@@ -277,8 +277,8 @@ var bitly = (
 					'success': function( response ) {
 
 						console.log( 'success', response );
-						resolve( response[ 'links' ] );
-						//return self.get_additional_bitlinks( url, [], response, resolve, reject );
+
+						return self.get_additional_bitlinks( url, [], response, resolve, reject );
 
 					},
 					'error': function( error ) {

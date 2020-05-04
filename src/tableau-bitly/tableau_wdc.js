@@ -657,8 +657,10 @@ var tableau_wdc = (
 
 
 				promise.then( function( response ) {
+
 					console.log( 'SUCCESS' );
 					doneCallback();
+
 				}, function( error ) {
 					console.log( 'error' );
 				} );
