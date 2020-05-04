@@ -213,7 +213,7 @@ tableau_wdc = (
 					dataType: tableau[ 'dataTypeEnum' ][ 'string' ],
 				},
 				{
-					id: 'created_at',
+					id: 'created',
 					alias: 'date_created',
 					dataType: tableau[ 'dataTypeEnum' ][ 'datetime' ],
 				},
