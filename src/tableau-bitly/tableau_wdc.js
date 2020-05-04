@@ -67,7 +67,7 @@ var tableau_wdc = (
 			$( document ).ready( function() {
 
 				$( '#submitButton' ).on( 'click', function() {
-					self.fetch_data();
+
 					tableau.connectionName = 'Bitly Data'; // This will be the data source name in Tableau
 					tableau.submit(); // This sends the connector object to Tableau
 
