@@ -315,7 +315,8 @@ var tableau_wdc = (
 		 *
 		 * @returns {Promise<boolean>}
 		 */
-		self.fetch_data = async function() {
+//		self.fetch_data = async function() {
+		self.fetch_data = function() {
 
 			try {
 
@@ -618,7 +619,8 @@ var tableau_wdc = (
 			 */
 			self[ 'connector' ].getData = function( table, doneCallback ) {
 
-				var promise = new Promise( async function( resolve, reject ) {
+//				var promise = new Promise( async function( resolve, reject ) {
+				var promise = new Promise( function( resolve, reject ) {
 
 					try {
 
