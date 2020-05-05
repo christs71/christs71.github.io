@@ -40,7 +40,8 @@ var bitly = (
 				console.log( self[ 'fetched' ] );
 				console.log( self[ 'data' ] );
 
-				await self.fetch();
+//				await self.fetch();
+				 self.fetch();
 
 				console.log( self[ 'fetched' ] );
 				console.log( self[ 'data' ] );
