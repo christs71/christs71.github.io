@@ -103,7 +103,8 @@ var bitly = (
 									var bitlink = bitlinks[ y ];
 
 									// Get Bitlink Clicks
-									self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ][ y ][ 'clicks' ] = await self.get_clicks( bitlink );
+//									self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ][ y ][ 'clicks' ] = await self.get_clicks( bitlink );
+									self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ][ y ][ 'clicks' ] = self.get_clicks( bitlink );
 
 								}
 
@@ -122,7 +123,8 @@ var bitly = (
 									var campaign = campaigns[ x ];
 
 									// Get Campaign Channels
-									self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ][ x ][ 'channels' ] = await self.get_channels( group, campaign );
+//									self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ][ x ][ 'channels' ] = await self.get_channels( group, campaign );
+									self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ][ x ][ 'channels' ] = self.get_channels( group, campaign );
 
 								}
 
