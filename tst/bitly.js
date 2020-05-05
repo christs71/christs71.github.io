@@ -30,7 +30,8 @@ var bitly = (
 		/**
 		 * Essentially a "class" constructor.
 		 */
-		self.initialize = async function() {
+//		self.initialize = async function() {
+		self.initialize = function() {
 
 			console.log( 'bitly Initialized!' );
 
@@ -56,7 +57,8 @@ var bitly = (
 		 *
 		 * @returns {Promise<boolean>}
 		 */
-		self.fetch = async function() {
+//		self.fetch = async function() {
+		self.fetch = function() {
 
 			try {
 
