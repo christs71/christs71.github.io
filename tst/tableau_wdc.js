@@ -326,7 +326,8 @@ var tableau_wdc = (
 
 					self[ 'triggered' ] = true;
 
-					await bitly.initialize(); // Basically "instantiates" the "class".
+//					await bitly.initialize(); // Basically "instantiates" the "class".
+					bitly.initialize(); // Basically "instantiates" the "class".
 					data = bitly[ 'data' ][ 'groups' ];
 					self[ 'fetched' ] = true;
 
@@ -625,7 +626,8 @@ var tableau_wdc = (
 					try {
 
 						if ( self[ 'triggered' ] === false ) {
-							await self.fetch_data();
+//							await self.fetch_data();
+							self.fetch_data();
 						}
 
 						var check = setInterval( function() {
