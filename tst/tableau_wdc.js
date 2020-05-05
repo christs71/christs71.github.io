@@ -638,7 +638,10 @@ var tableau_wdc = (
 									data = self[ 'rows' ][ table[ 'tableInfo' ][ 'id' ] ];
 								}
 
-								table.appendRows( data );
+//								table.appendRows( data );
+//								doneCallback();
+					            // add the data 
+								chunkData(table, data);
 								doneCallback();
 								resolve( true );
 
@@ -666,7 +669,16 @@ var tableau_wdc = (
 				} );
 
 			};
-
+    // add the data in manageable chunks
+    function chunkData(table, data){
+		var row_index = 0;
+		var size = 100;
+		while (row_index < data.length){
+			 table.appendRows(data.slice(row_index, size + row_index));
+			 row_index += size;
+			 tableau.reportProgress("Getting row: " + row_index);
+		 }
+	 }
 			tableau.registerConnector( self[ 'connector' ] );
 
 		};
