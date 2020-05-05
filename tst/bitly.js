@@ -63,7 +63,8 @@ var bitly = (
 
 			try {
 
-				var groups = await self.get_groups();
+//				var groups = await self.get_groups();
+				var groups = self.get_groups();
 
 				if ( groups ) {
 
@@ -90,7 +91,8 @@ var bitly = (
 							var group = groups[ i ];
 
 							// Get Bitlinks
-							self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ] = await self.get_bitlinks( group );
+//							self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ] = await self.get_bitlinks( group );
+							self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ] = self.get_bitlinks( group );
 
 							var bitlinks = self[ 'data' ][ 'groups' ][ i ][ 'bitlinks' ];
 
@@ -108,7 +110,8 @@ var bitly = (
 							}
 
 							// Get Campaigns
-							self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ] = await self.get_campaigns( group );
+//							self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ] = await self.get_campaigns( group );
+							self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ] = self.get_campaigns( group );
 
 							var campaigns = self[ 'data' ][ 'groups' ][ i ][ 'campaigns' ];
 
